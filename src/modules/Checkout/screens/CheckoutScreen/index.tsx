@@ -1,9 +1,24 @@
 import React from "react";
-
-// import { Container } from './styles';
+import Layout from "../../../../shared/components/Layout";
+import CartBox from "../../components/CartBox";
+import OrderBox from "../../components/OrderBox";
+import { CartContent, CheckoutZone, OrderContent, Title } from "./styles";
 
 const CheckoutScreen: React.FC = () => {
-  return <h1>CheckoutScreen</h1>;
+  return (
+    <Layout>
+      <CheckoutZone>
+        <OrderContent>
+          <Title margin="10rem">Complete seu pedido</Title>
+          <OrderBox />
+        </OrderContent>
+        <CartContent>
+          <Title>Cafes selecionados</Title>
+          <CartBox />
+        </CartContent>
+      </CheckoutZone>
+    </Layout>
+  );
 };
 
 export default CheckoutScreen;
