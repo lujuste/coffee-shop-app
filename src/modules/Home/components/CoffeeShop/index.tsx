@@ -35,10 +35,7 @@ const CoffeeShop: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const items = localStorage.getItem("products");
-    if (items) {
-      setCoffeeData(JSON.parse(items));
-    }
+    setCoffeeData(products);
   }, [products]);
 
   const handleAddQuantity = useCallback(

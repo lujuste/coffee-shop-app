@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CartContainer = styled.div`
   width: 448px;
-  min-height: 498px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.gray};

@@ -19,7 +19,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <Container>
       <Header>
         <NavLeft>
-          <img src={logoCoffee} />
+          <img
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+            src={logoCoffee}
+          />
         </NavLeft>
         <NavRight>
           <ButtonLocation location="Sao Paulo, SP" />

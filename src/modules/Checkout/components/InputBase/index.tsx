@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, Ref } from "react";
+import { forwardRef } from "react";
 
 import { Input } from "./styles";
 
@@ -6,8 +7,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
 }
 
-const InputBase: React.FC<InputProps> = ({ width, ...rest }) => {
-  return <Input width={width} {...rest} />;
-};
+const InputBase: React.FC<InputProps> = forwardRef(
+  ({ width, ...rest }, ref: Ref<HTMLInputElement>) => {
+    return <Input ref={ref} width={width} {...rest} />;
+  }
+);
 
 export default InputBase;

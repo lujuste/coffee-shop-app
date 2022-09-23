@@ -26,7 +26,7 @@ import deleteIcon from "../../assets/delete-icon.svg";
 import { useMainHook } from "../../../Home/hooks/mainHook";
 
 const CartBox: React.FC = () => {
-  const { chartOrder, setChartOrder } = useMainHook();
+  const { chartOrder, setChartOrder, ButtonSubmitRef } = useMainHook();
   const [sumOfItems, setSumOfItems] = useState(0);
   const [totalForPaid, setTotalForPaid] = useState(0);
 
@@ -34,8 +34,6 @@ const CartBox: React.FC = () => {
 
   const handleDeleteItem = useCallback(
     (itemId: string) => {
-      console.log("o");
-
       setChartOrder((state) => {
         let cloneState = [...state];
         let newArray = cloneState.filter((item) => item.id !== itemId);
@@ -51,13 +49,39 @@ const CartBox: React.FC = () => {
   }, [chartOrder]);
 
   useEffect(() => {
-    setTotalForPaid((state) => sumOfItems + deliverTax);
+    setTotalForPaid(() => sumOfItems + deliverTax);
   }, [sumOfItems]);
+
+  const handleModifyQuantity = useCallback(
+    (index: number, type: "add" | "remove") => {
+      if (type === "add") {
+        setChartOrder((state) => {
+          let cloneState = [...state];
+          cloneState[index].quantity += 1;
+          return cloneState;
+        });
+      }
+
+      if (type === "remove") {
+        setChartOrder((state) => {
+          let cloneState = [...state];
+          if (cloneState[index].quantity <= 1) return state;
+          cloneState[index].quantity -= 1;
+          return cloneState;
+        });
+      }
+    },
+    [chartOrder]
+  );
+
+  const handleSubmitOrder = useCallback(() => {
+    ButtonSubmitRef.current?.click();
+  }, []);
 
   return (
     <CartContainer>
       {chartOrder.length > 0 &&
-        chartOrder.map((order) => (
+        chartOrder.map((order, index) => (
           <>
             <OrderWrapper key={order.id}>
               <ImageContent>
@@ -68,11 +92,15 @@ const CartBox: React.FC = () => {
                 <ContentMiddle>
                   <QuantityContent>
                     <BgButton>
-                      <ButtonLess>
+                      <ButtonLess
+                        onClick={() => handleModifyQuantity(index, "remove")}
+                      >
                         <img src={buttonLessIcon} />
                       </ButtonLess>
                       <Quantity> {order.quantity} </Quantity>
-                      <ButtonMore>
+                      <ButtonMore
+                        onClick={() => handleModifyQuantity(index, "add")}
+                      >
                         <img src={buttonMoreIcon} />
                       </ButtonMore>
                     </BgButton>
@@ -106,7 +134,7 @@ const CartBox: React.FC = () => {
           <PriceDetails>
             <HStack>
               <span className="normal-text">Total itens</span>
-              <p className="normal-text">R$ {sumOfItems} </p>
+              <p className="normal-text">R$ {sumOfItems.toFixed(2)} </p>
             </HStack>
             <HStack>
               <span className="normal-text">Entrega</span>
@@ -117,7 +145,9 @@ const CartBox: React.FC = () => {
               <p className="bold-text">R$ {totalForPaid.toFixed(2)} </p>
             </HStack>
           </PriceDetails>
-          <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
+          <ButtonConfirm onClick={handleSubmitOrder}>
+            CONFIRMAR PEDIDO
+          </ButtonConfirm>
         </>
       )}
     </CartContainer>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import Layout from "../../../../shared/components/Layout";
 import { useMainHook } from "../../../Home/hooks/mainHook";
 import CartBox from "../../components/CartBox";

@@ -5,7 +5,7 @@ export const Main = styled.div`
   flex-direction: column;
 `;
 
-export const FormAndress = styled.div`
+export const FormAndress = styled.form`
   width: 640px;
   height: 372px;
   display: flex;
