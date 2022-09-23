@@ -15,10 +15,12 @@ import {
   LeftContainer,
   RightContainer,
 } from "./styles";
+import { useMainHook } from "../../../Home/hooks/mainHook";
 
 const SuccessScreen: React.FC = () => {
   const [payment, setPayment] = useState<string | null>("");
   const [andress, setAndress] = useState<any>(null);
+  const { chartOrder, setChartOrder } = useMainHook();
 
   useEffect(() => {
     const andressLocalStorage = localStorage.getItem("perfil");
@@ -30,7 +32,19 @@ const SuccessScreen: React.FC = () => {
 
   useEffect(() => {
     const paymentLocalStorage = localStorage.getItem("pagamento");
-    setPayment(paymentLocalStorage);
+    if (paymentLocalStorage) {
+      setPayment(() => JSON.parse(paymentLocalStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (payment === "credit") {
+      console.log("eh isso mesmo credito");
+    }
+  }, [payment]);
+
+  useEffect(() => {
+    setChartOrder([]);
   }, []);
 
   return (
@@ -59,8 +73,12 @@ const SuccessScreen: React.FC = () => {
               <Flex>
                 <img src={cashIcon} />
                 <span style={{ maxWidth: "206px" }}>
-                  {`Pagamento na entrega, ${
-                    payment === "credit" && "Cartao de credito"
+                  {`Pagamento na entrega ${
+                    payment === "credit"
+                      ? "Cartao de credito"
+                      : payment === "debit"
+                      ? "Cartao de debito"
+                      : payment === "cash" && "dinheiro"
                   }`}
                 </span>
               </Flex>

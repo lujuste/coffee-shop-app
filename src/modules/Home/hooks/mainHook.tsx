@@ -64,11 +64,15 @@ const MainHookProvider: React.FC<MainHookProps> = ({ children }) => {
   }, [chartOrder]);
 
   useEffect(() => {
-    localStorage.setItem("perfil", JSON.stringify(detailsUser));
+    if (detailsUser.andress) {
+      localStorage.setItem("perfil", JSON.stringify(detailsUser));
+    }
   }, [detailsUser]);
 
   useEffect(() => {
-    localStorage.setItem("pagamento", JSON.stringify(methodOfPayment));
+    if (methodOfPayment !== "empty") {
+      localStorage.setItem("pagamento", JSON.stringify(methodOfPayment));
+    }
   }, [methodOfPayment]);
 
   return (
