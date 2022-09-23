@@ -48,7 +48,11 @@ const BackgroundHero: React.FC = () => {
               {infoArray.map(
                 (info) =>
                   info.type === "top" && (
-                    <InfoProduct icon={info.icon} text={info.text} />
+                    <InfoProduct
+                      key={String(Math.random())}
+                      icon={info.icon}
+                      text={info.text}
+                    />
                   )
               )}
             </FlexTop>
@@ -56,7 +60,11 @@ const BackgroundHero: React.FC = () => {
               {infoArray.map(
                 (info) =>
                   info.type === "bottom" && (
-                    <InfoProduct icon={info.icon} text={info.text} />
+                    <InfoProduct
+                      key={String(Math.random())}
+                      icon={info.icon}
+                      text={info.text}
+                    />
                   )
               )}
             </FlexBottom>

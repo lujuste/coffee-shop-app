@@ -3,14 +3,17 @@ import RoutesApp from "./routes";
 import GlobalStyle from "./shared/globalStyle";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CustomThemeProvider } from "./hooks/theme";
+import { MainHookProvider } from "./modules/Home/hooks/mainHook";
 
 function App() {
   return (
     <Router>
-      <CustomThemeProvider>
-        <GlobalStyle />
-        <RoutesApp />
-      </CustomThemeProvider>
+      <MainHookProvider>
+        <CustomThemeProvider>
+          <GlobalStyle />
+          <RoutesApp />
+        </CustomThemeProvider>
+      </MainHookProvider>
     </Router>
   );
 }

@@ -1,5 +1,6 @@
 export const CoffeeList = [
   {
+    id: "ksdfjh34sdjksd",
     name: "Expresso Tradicional",
     description: "O tradicional café feito com água quente e grãos moídos",
     price: 9.99,
@@ -9,6 +10,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "ksdfj34hsdjksdfhdjksd",
     name: "Expresso Americano",
     description: "Expresso diluído, menos intenso que o tradicional",
     price: 9.99,
@@ -18,6 +20,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "ksdfjhsdfssklhfdddd33sdfd",
     name: "Expresso Cremoso",
     description: "Café expresso tradicional com espuma cremosa",
     price: 9.99,
@@ -27,6 +30,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "ksdfjhs3443fdddd33sdfd",
     name: "Expresso Gelado",
     description: "Bebida preparada com café expresso e cubos de gelo",
     price: 9.99,
@@ -36,6 +40,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "89734ksdfjhskj",
     name: "Café com Leite",
     description: "Meio a meio de expresso tradicional com leite vaporizado",
     price: 9.99,
@@ -45,6 +50,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "46r45545sddfjhskj",
     name: "Latte",
     description:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
@@ -55,6 +61,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "ouioeru8947589dfjkh",
     name: "Capuccino",
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
@@ -65,6 +72,7 @@ export const CoffeeList = [
   },
 
   {
+    id: "34dfsjk4hfs4dk34334",
     name: "Macchiato",
     description:
       "Café expresso misturado com um pouco de leite quente e espuma",

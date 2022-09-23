@@ -6,12 +6,15 @@ import { Container, Header, NavLeft, NavRight, Test } from "./styles";
 import logoCoffee from "../../../assets/logo-coffee.svg";
 import ButtonLocation from "../ButtonLocation";
 import ButtonCart from "../ButtonCart";
+import { useNavigate } from "react-router-dom";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Header>
@@ -20,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </NavLeft>
         <NavRight>
           <ButtonLocation location="Sao Paulo, SP" />
-          <ButtonCart />
+          <ButtonCart onClick={() => navigate("/checkout")} />
         </NavRight>
       </Header>
 

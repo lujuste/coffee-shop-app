@@ -1,12 +1,20 @@
 import React from "react";
-import { Button } from "./styles";
+import { Baloon, Button } from "./styles";
 import cartIcon from "../../../assets/cart-icon.svg";
+import { useMainHook } from "../../../modules/Home/hooks/mainHook";
 // import { Container } from './styles';
 
-const ButtonCart: React.FC = () => {
+interface ButtonProps {
+  onClick: () => void;
+}
+
+const ButtonCart: React.FC<ButtonProps> = ({ onClick }) => {
+  const { chartOrder } = useMainHook();
+
   return (
-    <Button>
+    <Button onClick={onClick}>
       <img src={cartIcon} />
+      {chartOrder.length > 0 && <Baloon> {chartOrder.length} </Baloon>}
     </Button>
   );
 };

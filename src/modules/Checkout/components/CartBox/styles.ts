@@ -8,6 +8,13 @@ export const CartContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
   border-radius: 6px 44px 6px 44px;
   padding: 40px;
+
+  .empty-cart {
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    color: ${({ theme }) => theme.colors.boldText};
+    font-weight: 700;
+  }
 `;
 
 export const OrderWrapper = styled.div`
@@ -206,4 +213,12 @@ export const HStack = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const EmptyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

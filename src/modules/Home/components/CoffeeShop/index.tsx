@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import {
   BgButton,
@@ -25,19 +25,70 @@ import { CoffeeList } from "../../../../utils/CoffeeList";
 import cartButtonIcon from "../../assets/cart-button.svg";
 import buttonMoreIcon from "../../assets/more-icon.svg";
 import buttonLessIcon from "../../assets/lessbutton-icon.svg";
+import { useMainHook } from "../../hooks/mainHook";
+import { ProductsProps } from "../../@types/productsType";
+import { useNavigate } from "react-router-dom";
 
 const CoffeeShop: React.FC = () => {
+  const { products, chartOrder, setChartOrder } = useMainHook();
+  const [CoffeeData, setCoffeeData] = useState<ProductsProps[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const items = localStorage.getItem("products");
+    if (items) {
+      setCoffeeData(JSON.parse(items));
+    }
+  }, [products]);
+
+  const handleAddQuantity = useCallback(
+    (index: number) => {
+      setCoffeeData((state) => {
+        let cloneState = [...state];
+        cloneState[index].quantity += 1;
+        return cloneState;
+      });
+    },
+    [products]
+  );
+
+  const handleRemoveQuantity = useCallback(
+    (index: number) => {
+      setCoffeeData((state) => {
+        let cloneState = [...state];
+        if (cloneState[index].quantity <= 1) return state;
+        cloneState[index].quantity -= 1;
+
+        return cloneState;
+      });
+    },
+    [products]
+  );
+
+  const handleToChart = useCallback(
+    (id: string) => {
+      CoffeeData.forEach((object) => {
+        if (object.id === id) {
+          setChartOrder((state) => {
+            return [...state, object];
+          });
+        }
+      });
+    },
+    [CoffeeData, chartOrder]
+  );
+
   return (
     <Container>
       <Heading>Nossos cafes</Heading>
       <Grid>
-        {CoffeeList.map((coffee) => (
-          <GridItem>
+        {CoffeeData.map((coffee: ProductsProps, index: number) => (
+          <GridItem key={coffee.id}>
             <VerticalStack>
               <img src={coffee.image} />
 
               {coffee.tags.map((tag) => (
-                <Tag category={tag} />
+                <Tag key={String(Math.random())} category={tag} />
               ))}
 
               <Title> {coffee.name} </Title>
@@ -50,18 +101,18 @@ const CoffeeShop: React.FC = () => {
 
                 <QuantityContent>
                   <BgButton>
-                    <ButtonLess>
+                    <ButtonLess onClick={() => handleRemoveQuantity(index)}>
                       <img src={buttonLessIcon} />
                     </ButtonLess>
                     <Quantity> {coffee.quantity} </Quantity>
-                    <ButtonMore>
+                    <ButtonMore onClick={() => handleAddQuantity(index)}>
                       <img src={buttonMoreIcon} />
                     </ButtonMore>
                   </BgButton>
                 </QuantityContent>
 
                 <CartContent>
-                  <CartButton>
+                  <CartButton onClick={() => handleToChart(coffee.id)}>
                     <img src={cartButtonIcon} />
                   </CartButton>
                 </CartContent>
