@@ -81,4 +81,65 @@ export const CoffeeList = [
     tags: ["Tradicional"],
     quantity: 1,
   },
+
+  {
+    id: "34dfsjk4hffsdffsdfs4dk34334",
+    name: "Mocaccino",
+    description: "Café expresso com calda de chocolate, pouco leite e espuma",
+    price: 9.99,
+    image: "./images/mocaccino.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
+
+  {
+    id: "34dfsjk4hfs4dk3433sdlfhjfklj4",
+    name: "Chocolate quente",
+    description: "Bebida feita com chocolate dissolvido no leite quente e café",
+    price: 9.99,
+    image: "./images/chocolate.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
+
+  {
+    id: "34dfsjk4hfs4dfsdsdfsddfsdsdfdk34334",
+    name: "Havaiano",
+    description: "Bebida adocicada preparada com café e leite de coco",
+    price: 9.99,
+    image: "./images/haviano.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
+
+  {
+    id: "34dfsjk4hfs4fsdsdfsdfsdfsddk34334",
+    name: "Árabe",
+    description: "Bebida preparada com grãos de café árabe e especiarias",
+    price: 9.99,
+    image: "./images/arabe.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
+
+  {
+    id: "34dfsgfgdgfgdgdfdfgdfgjk4hfs4dk34334",
+    name: "Cubano",
+    description:
+      "Drink gelado de café expresso com rum, creme de leite e hortelã",
+    price: 9.99,
+    image: "./images/cubano.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
+
+  {
+    id: "34dfsjk4hfs4dk34334",
+    name: "Irlandês",
+    description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
+    price: 9.99,
+    image: "./images/irlandes.svg",
+    tags: ["Tradicional"],
+    quantity: 1,
+  },
 ];
